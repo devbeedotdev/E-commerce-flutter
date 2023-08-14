@@ -5,15 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:shopping_app/view/login_screen.dart';
 
-void main() {
-  runApp(ProviderScope(
-      child: GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-              appBarTheme: const AppBarTheme(
-                  backgroundColor: Color(0xffFBFBFD), elevation: 0),
-              scaffoldBackgroundColor: const Color(0xffFBFBFD)),
-          home: const MyApp())));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -24,14 +18,23 @@ class MyApp extends ConsumerWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
+        minTextAdapt: true,
+        splitScreenMode: true,
         designSize: Size(width, height),
         builder: (context, child) {
-          return Scaffold(
-            body: AnimatedSplashScreen(
-              duration: 250,
-              splash: 'assets/images/splash.png',
-              nextScreen: const LoginScreen(),
-              splashTransition: SplashTransition.rotationTransition,
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+                appBarTheme: const AppBarTheme(
+                    backgroundColor: Color(0xffFBFBFD), elevation: 0),
+                scaffoldBackgroundColor: const Color(0xffFBFBFD)),
+            home: Scaffold(
+              body: AnimatedSplashScreen(
+                duration: 250,
+                splash: 'assets/images/splash.png',
+                nextScreen: const LoginScreen(),
+                splashTransition: SplashTransition.rotationTransition,
+              ),
             ),
           );
         });

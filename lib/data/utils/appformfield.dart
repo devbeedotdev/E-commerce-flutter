@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
 
 class AppFormField extends StatelessWidget {
@@ -22,9 +24,17 @@ class AppFormField extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: const Color(0x1AF67952)),
-              width: 48,
-              height: 45,
-              child: Image(image: AssetImage("assets/images/$image"))),
+              width: 48.w,
+              height: 45.h,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                      width: 24.w,
+                      height: 24.h,
+                      image: AssetImage("assets/images/$image")),
+                ],
+              )),
           filled: true,
           fillColor: Colors.white,
           focusedBorder: OutlineInputBorder(
@@ -41,12 +51,10 @@ class AppFormField extends StatelessWidget {
 class SearchAppFormField extends StatelessWidget {
   final Widget icon;
   final String title;
-  final String image;
   const SearchAppFormField({
     super.key,
     required this.icon,
     required this.title,
-    required this.image,
   });
 
   @override
@@ -67,7 +75,8 @@ class SearchAppFormField extends StatelessWidget {
                   color: const Color(0xffF67952)),
               width: 48,
               height: 45,
-              child: Image(image: AssetImage("assets/images/$image"))),
+              child:
+                  const Icon(color: Colors.white, size: 18, IconlyBold.filter)),
           filled: true,
           fillColor: Colors.white,
           focusedBorder: OutlineInputBorder(

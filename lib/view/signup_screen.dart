@@ -4,10 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
+import 'package:shopping_app/data/utils/appbutton.dart';
 import 'package:shopping_app/data/utils/appformfield.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
 import 'package:shopping_app/view/dashboard_screen.dart';
-import 'package:shopping_app/view/login_screen.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});

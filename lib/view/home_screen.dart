@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
 import 'package:shopping_app/data/utils/appformfield.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
@@ -17,12 +18,35 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
-          leading: Image.asset("assets/images/drawer.png"),
+          leading: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(width: 28, height: 16, "assets/images/drawer.png"),
+            ],
+          ),
           title: Text(
             "15/2 New Texas",
             style: Styles.smallText(color: Colors.black),
           ),
-          actions: [Image.asset("assets/images/notification.png")]),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: 12.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      height: 38.h,
+                      width: 38.w,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffFFFFFF),
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: const Icon(IconlyBold.notification,
+                          color: Colors.grey)),
+                ],
+              ),
+            )
+          ]),
       body: Padding(
         padding: EdgeInsets.only(left: 20.w, right: 20.w),
         child: SingleChildScrollView(
@@ -39,7 +63,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
             SpacerUtil.hspace(23.h),
             const SearchAppFormField(
-                image: "Filter.png",
                 title: "Search Items",
                 icon: Icon(
                   Icons.search,
@@ -99,7 +122,7 @@ class LargeDisplay extends ConsumerWidget {
           children: [
             Image.asset("assets/images/shirt.png"),
             Padding(
-              padding: EdgeInsets.only(left: 10.w, right: 10.w),
+              padding: EdgeInsets.only(top: 15.h, left: 10.w, right: 10.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -142,6 +165,7 @@ class SmallDisplay extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("assets/images/dress.png"),
+            SpacerUtil.hspace(7.h),
             title.isEmpty
                 ? Container()
                 : Text(

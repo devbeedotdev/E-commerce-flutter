@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Styles {
   static TextStyle smallText({Color color = Colors.grey}) {
     return TextStyle(
-        fontSize: 12.sp,
+        fontSize: 12,
         color: color,
         fontWeight: FontWeight.w400,
         fontFamily: 'Roboto');

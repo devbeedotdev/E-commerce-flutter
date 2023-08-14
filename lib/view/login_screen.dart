@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
+import 'package:shopping_app/data/utils/appbutton.dart';
 import 'package:shopping_app/data/utils/appformfield.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
 import 'package:shopping_app/view/dashboard_screen.dart';
@@ -24,7 +25,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: Center(
             child: Padding(
           padding: EdgeInsets.only(
-              left: 20.w, top: 20.h, right: 20.w, bottom: 66.18.h),
+            left: 20.w,
+            top: 20.h,
+            right: 20.w,
+          ),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -62,7 +66,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       Get.to(() => const DashBoardScreen());
                     },
                     isLarge: false),
-                SpacerUtil.hspace(75.h),
+                SpacerUtil.hspace(54.h),
                 SizedBox(
                   width: 200.w,
                   child: Row(
@@ -89,17 +93,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                        width: 70.88,
-                        height: 70.88,
-                        "assets/images/fb_logo.png"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                            width: 70.88,
+                            height: 70.88,
+                            "assets/images/fb_logo.png"),
+                      ],
+                    ),
                     Image.asset(
                         width: 70.88,
                         height: 70.88,
                         "assets/images/google_logo.png")
                   ],
                 ),
-                SpacerUtil.hspace(10.h),
+                SpacerUtil.hspace(50.h),
                 RichText(
                     text: TextSpan(
                   style: const TextStyle(
@@ -127,27 +136,5 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         )),
       ),
     );
-  }
-}
-
-class AppButton extends ConsumerWidget {
-  final bool isLarge;
-  final String title;
-  final Function()? function;
-  const AppButton(
-      {required this.title,
-      required this.function,
-      required this.isLarge,
-      super.key});
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xffF67952),
-            minimumSize: isLarge ? Size(253.w, 55.h) : Size(205.w, 59.h),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.r))),
-        onPressed: function,
-        child: Text(title));
   }
 }
