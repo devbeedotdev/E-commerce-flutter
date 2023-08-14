@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
-import 'package:shopping_app/data/utils/appbutton.dart';
+import 'package:shopping_app/view/widgets/appbutton.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
 
 class ProductDetailsScreen extends ConsumerStatefulWidget {

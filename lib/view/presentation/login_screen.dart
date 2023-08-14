@@ -2,21 +2,22 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
-import 'package:shopping_app/data/utils/appbutton.dart';
-import 'package:shopping_app/data/utils/appformfield.dart';
+import 'package:shopping_app/view/widgets/appbutton.dart';
+import 'package:shopping_app/view/widgets/appformfield.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
-import 'package:shopping_app/view/dashboard_screen.dart';
+import 'package:shopping_app/view/presentation/dashboard_screen.dart';
+import 'package:shopping_app/view/presentation/signup_screen.dart';
 
-class SignUpScreen extends ConsumerStatefulWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends ConsumerStatefulWidget {
+  const LoginScreen({super.key});
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _SignUpScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends ConsumerState<SignUpScreen> {
-  final isCheckedProvider = StateProvider<bool>((ref) => false);
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         child: Center(
             child: Padding(
           padding: EdgeInsets.only(
-              left: 20.w, top: 20.h, right: 20.w, bottom: 66.18.h),
+            left: 20.w,
+            top: 20.h,
+            right: 20.w,
+          ),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -32,15 +36,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     width: 54, height: 62, "assets/images/app_logo.png"),
                 SpacerUtil.hspace(20.h),
                 Text(
-                  "Sign Up",
+                  "Log in",
                   style: Styles.mediumText(),
                 ),
                 SpacerUtil.hspace(33.h),
-                const AppFormField(
-                  image: "Profile.png",
-                  title: "Name",
-                ),
-                SpacerUtil.hspace(16.h),
                 const AppFormField(
                   image: "Message.png",
                   title: "Email",
@@ -50,44 +49,24 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   image: "Lock.png",
                   title: "Password",
                 ),
-                Row(
-                  children: [
-                    Transform.scale(
-                      scale: 0.8,
-                      child: Checkbox(
-                          activeColor: const Color(0xffF67952),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.r)),
-                          value: ref.watch(isCheckedProvider),
-                          onChanged: (value) {
-                            ref.read(isCheckedProvider.notifier).state =
-                                value as bool;
-                          }),
-                    ),
-                    RichText(
-                        text: TextSpan(
-                      style: Styles.smallText(color: Colors.grey),
-                      children: <TextSpan>[
-                        const TextSpan(text: "I accept to all the "),
-                        TextSpan(
-                          recognizer: TapGestureRecognizer()..onTap = () {},
-                          text: 'Terms & Condition',
-                          style:
-                              Styles.smallText(color: const Color(0xff230a06)),
-                        ),
-                      ],
+                GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: 210.w, right: 20.h, top: 18.h, bottom: 17.h),
+                      child: Text(
+                        maxLines: 1,
+                        "Forgot Password?",
+                        style: Styles.smallText(color: const Color(0xff230a06)),
+                      ),
                     )),
-                  ],
-                ),
                 AppButton(
-                    title: "Sign Up",
-                    function: ref.watch(isCheckedProvider)
-                        ? () {
-                            Get.to(() => const DashBoardScreen());
-                          }
-                        : null,
+                    title: "Log In",
+                    function: () {
+                      Get.to(() => const DashBoardScreen());
+                    },
                     isLarge: false),
-                SpacerUtil.hspace(50.h),
+                SpacerUtil.hspace(54.h),
                 SizedBox(
                   width: 200.w,
                   child: Row(
@@ -114,17 +93,22 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                        width: 70.88,
-                        height: 70.88,
-                        "assets/images/fb_logo.png"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                            width: 70.88,
+                            height: 70.88,
+                            "assets/images/fb_logo.png"),
+                      ],
+                    ),
                     Image.asset(
                         width: 70.88,
                         height: 70.88,
                         "assets/images/google_logo.png")
                   ],
                 ),
-                SpacerUtil.hspace(10.h),
+                SpacerUtil.hspace(50.h),
                 RichText(
                     text: TextSpan(
                   style: const TextStyle(
@@ -132,13 +116,13 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     color: Colors.grey,
                   ),
                   children: <TextSpan>[
-                    const TextSpan(text: "Already have an account? "),
+                    const TextSpan(text: "Don't have an account? "),
                     TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Get.back();
+                          Get.to(() => const SignUpScreen());
                         },
-                      text: 'Log In',
+                      text: 'Sign Up',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,

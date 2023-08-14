@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
-import 'package:shopping_app/view/cart_screen.dart';
-import 'package:shopping_app/view/home_screen.dart';
+import 'package:shopping_app/view/presentation/cart_screen.dart';
+import 'package:shopping_app/view/widgets/cards/small_display.dart';
 
 class CartTile extends ConsumerWidget {
   const CartTile({super.key});

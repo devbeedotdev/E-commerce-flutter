@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
-import 'package:shopping_app/data/utils/appformfield.dart';
+import 'package:shopping_app/view/widgets/appformfield.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
+import 'package:shopping_app/view/widgets/cards/large_display.dart';
+import 'package:shopping_app/view/widgets/cards/small_display.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -99,81 +101,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
           ]),
         ),
-      ),
-    );
-  }
-}
-
-class LargeDisplay extends ConsumerWidget {
-  const LargeDisplay({super.key});
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: EdgeInsets.only(right: 10.w),
-      child: Container(
-        decoration: BoxDecoration(
-            color: const Color(0xffEFEFF2),
-            borderRadius: BorderRadius.circular(8.r)),
-        width: 154.h,
-        height: 190.h,
-        child: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/images/shirt.png"),
-            Padding(
-              padding: EdgeInsets.only(top: 15.h, left: 10.w, right: 10.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                      width: 98,
-                      child: Text(
-                        "Long Sleeeve Shirts",
-                        style: Styles.smallText(),
-                      )),
-                  Text(
-                    "\$165",
-                    style: Styles.smallText(color: Colors.black),
-                  )
-                ],
-              ),
-            )
-          ],
-        )),
-      ),
-    );
-  }
-}
-
-class SmallDisplay extends ConsumerWidget {
-  final String title;
-  final String image;
-  const SmallDisplay({super.key, required this.image, required this.title});
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: EdgeInsets.only(right: 10.w),
-      child: Container(
-        decoration: BoxDecoration(
-            color: const Color(0x0D000000),
-            borderRadius: BorderRadius.circular(8.r)),
-        width: 71.h,
-        height: 75.h,
-        child: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/images/dress.png"),
-            SpacerUtil.hspace(7.h),
-            title.isEmpty
-                ? Container()
-                : Text(
-                    "Dress",
-                    style: Styles.smallText(),
-                  )
-          ],
-        )),
       ),
     );
   }

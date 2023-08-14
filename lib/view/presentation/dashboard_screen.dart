@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconly/iconly.dart';
-import 'package:shopping_app/view/cart_screen.dart';
-import 'package:shopping_app/view/home_screen.dart';
-import 'package:shopping_app/view/product_details_screen.dart';
+import 'package:shopping_app/view/presentation/cart_screen.dart';
+import 'package:shopping_app/view/presentation/home_screen.dart';
+import 'package:shopping_app/view/presentation/product_details_screen.dart';
+import 'package:shopping_app/view/presentation/profile_screen.dart';
 
 class DashBoardScreen extends ConsumerStatefulWidget {
   const DashBoardScreen({super.key});
@@ -18,7 +19,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
     const HomeScreen(),
     const CartScreen(),
     const ProductDetailsScreen(),
-    const Material()
+    const ProfileScreen()
   ];
   @override
   Widget build(BuildContext context) {
