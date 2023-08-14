@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconly/iconly.dart';
 import 'package:shopping_app/view/cart_screen.dart';
 import 'package:shopping_app/view/home_screen.dart';
+import 'package:shopping_app/view/product_details_screen.dart';
 
 class DashBoardScreen extends ConsumerStatefulWidget {
   const DashBoardScreen({super.key});
@@ -16,7 +17,7 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
   final List<Widget> pages = [
     const HomeScreen(),
     const CartScreen(),
-    const Material(),
+    const ProductDetailsScreen(),
     const Material()
   ];
   @override
