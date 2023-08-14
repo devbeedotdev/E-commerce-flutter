@@ -33,7 +33,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +56,116 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             Text(
               "alex@gmail.com",
               style: Styles.smallText(),
-            )
+            ),
+            SpacerUtil.hspace(25.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: List.generate(
+                  3,
+                  (index) => const MediumDisplay(
+                      icon: Text(""),
+                      title: "Progress Order",
+                      subtitle: "10+")),
+            ),
+            SpacerUtil.hspace(25.h),
+            Padding(
+              padding: EdgeInsets.only(left: 10.0.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Personal Information",
+                    style: Styles.mediumText(),
+                  ),
+                ],
+              ),
+            ),
+            SpacerUtil.hspace(14.h),
+            const UserDetailCard()
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class UserDetailCard extends ConsumerStatefulWidget {
+  const UserDetailCard({super.key});
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _UserDetailCardState();
+}
+
+class _UserDetailCardState extends ConsumerState<UserDetailCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      width: 334.w,
+      height: 195.h,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 10.0.h,
+          right: 10.h,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Name:",
+                  style: Styles.smallText(),
+                ),
+                const Text(
+                  "Chris Janspn",
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Email:",
+                  style: Styles.smallText(),
+                ),
+                const Text(
+                  "dummy@emeail.com",
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Location", style: Styles.smallText()),
+                const Text(
+                  "San Diego",
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Zip Code",
+                  style: Styles.smallText(),
+                ),
+                const Text("1200")
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Phone",
+                  style: Styles.smallText(),
+                ),
+                const Text("08012345678")
+              ],
+            ),
           ],
         ),
       ),
@@ -77,7 +185,14 @@ class MediumDisplay extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      width: 106.w,
+      height: 117.h,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             decoration: BoxDecoration(
@@ -89,10 +204,11 @@ class MediumDisplay extends ConsumerWidget {
             title,
             style: Styles.smallText(),
           ),
-          Text(
-            subtitle,
-            style: Styles.smallText(),
-          ),
+          Text(subtitle,
+              style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Roboto")),
         ],
       ),
     );

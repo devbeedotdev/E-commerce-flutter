@@ -52,12 +52,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 GestureDetector(
                     onTap: () {},
                     child: Padding(
-                      padding: EdgeInsets.only(
-                          left: 210.w, right: 20.h, top: 18.h, bottom: 17.h),
-                      child: Text(
-                        maxLines: 1,
-                        "Forgot Password?",
-                        style: Styles.smallText(color: const Color(0xff230a06)),
+                      padding: EdgeInsets.only(top: 8.h, bottom: 8.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            maxLines: 1,
+                            "Forgot Password?",
+                            style: Styles.smallText(
+                                color: const Color(0xff230a06)),
+                          ),
+                        ],
                       ),
                     )),
                 AppButton(
