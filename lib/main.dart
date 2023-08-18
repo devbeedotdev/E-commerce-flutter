@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shopping_app/view/presentation/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  await Hive.openBox('app-local-storage');
   runApp(const ProviderScope(child: MyApp()));
 }
 
