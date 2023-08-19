@@ -46,6 +46,8 @@ dependencies:
   dio_cache_interceptor: ^3.4.2
   json_annotation: ^4.8.1
   hive_flutter: ^1.1.0
+  flutter_toastr: ^1.0.3
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   json_serializable: ^6.7.1

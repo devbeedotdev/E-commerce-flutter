@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/data/controllers/form_controllers.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
 import 'package:shopping_app/view/widgets/appbutton.dart';
 import 'package:shopping_app/view/widgets/appformfield.dart';
@@ -36,17 +37,20 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   style: Styles.mediumText(),
                 ),
                 SpacerUtil.hspace(33.h),
-                const AppFormField(
+                AppFormField(
+                  controller: username,
                   image: "Profile.png",
                   title: "Name",
                 ),
                 SpacerUtil.hspace(16.h),
-                const AppFormField(
+                AppFormField(
+                  controller: email,
                   image: "Message.png",
                   title: "Email",
                 ),
                 SpacerUtil.hspace(16.h),
-                const AppFormField(
+                AppFormField(
+                  controller: password,
                   image: "Lock.png",
                   title: "Password",
                 ),
