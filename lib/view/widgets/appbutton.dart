@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends ConsumerWidget {
+  final bool isLoading;
   final bool isLarge;
   final String title;
   final Function()? function;
   const AppButton(
-      {required this.title,
+      {required this.isLoading,
+      required this.title,
       required this.function,
       required this.isLarge,
       super.key});
@@ -20,6 +22,6 @@ class AppButton extends ConsumerWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(90.r))),
         onPressed: function,
-        child: Text(title));
+        child: isLoading ? const CircularProgressIndicator() : Text(title));
   }
 }

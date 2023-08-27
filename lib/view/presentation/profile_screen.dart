@@ -46,7 +46,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             SpacerUtil.hspace(13.h),
             Text(
-              "Lawal Damilare",
+              "fkdjhfk",
               style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w500,
@@ -54,7 +54,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             SpacerUtil.hspace(4.h),
             Text(
-              "alex@gmail.com",
+              "xvjkjdsksjv",
               style: Styles.smallText(),
             ),
             SpacerUtil.hspace(25.h),
@@ -121,7 +121,7 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
                   style: Styles.smallText(),
                 ),
                 const Text(
-                  "Chris Janspn",
+                  "sff",
                 ),
               ],
             ),
@@ -133,7 +133,7 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
                   style: Styles.smallText(),
                 ),
                 const Text(
-                  "dummy@emeail.com",
+                  "vdvjd",
                 ),
               ],
             ),
@@ -142,7 +142,7 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
               children: [
                 Text("Location", style: Styles.smallText()),
                 const Text(
-                  "San Diego",
+                  "fdjfkjf",
                 ),
               ],
             ),
@@ -153,7 +153,7 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
                   "Zip Code",
                   style: Styles.smallText(),
                 ),
-                const Text("1200")
+                const Text("fjkfjc")
               ],
             ),
             Row(
@@ -163,7 +163,7 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
                   "Phone",
                   style: Styles.smallText(),
                 ),
-                const Text("08012345678")
+                const Text("ffvjkjv")
               ],
             ),
           ],

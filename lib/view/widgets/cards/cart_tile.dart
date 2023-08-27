@@ -16,7 +16,7 @@ class CartTile extends ConsumerWidget {
               borderRadius: BorderRadius.circular(8.r),
               borderSide: BorderSide.none),
           tileColor: const Color(0xffFFFFFF),
-          leading: const SmallDisplay(title: "", image: ""),
+          leading: SmallDisplay(function: () {}, title: "", image: ""),
           title: const Text("Henley Shirts"),
           subtitle: const Text("\$250"),
           trailing: Row(

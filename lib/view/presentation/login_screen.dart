@@ -1,12 +1,14 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:shopping_app/data/helpers/validation_helper.dart';
 import 'package:shopping_app/data/controllers/form_controllers.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
+import 'package:shopping_app/data/provider/onboarding/onboarding_provider.dart';
+import 'package:shopping_app/view/presentation/dashboard_screen.dart';
 import 'package:shopping_app/view/widgets/appbutton.dart';
 import 'package:shopping_app/view/widgets/appformfield.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
@@ -19,19 +21,34 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  Dio dio = Dio();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-            child: Padding(
-          padding: EdgeInsets.only(
-            left: 20.w,
-            top: 20.h,
-            right: 20.w,
-          ),
-          child: SingleChildScrollView(
+    return const Scaffold(body: LoginScreenWidget());
+  }
+}
+
+class LoginScreenWidget extends ConsumerStatefulWidget {
+  const LoginScreenWidget({super.key});
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _LoginScreenWidgetState();
+}
+
+class _LoginScreenWidgetState extends ConsumerState<LoginScreenWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final onboardingVm = ref.watch(onboardingViewModel);
+    return SafeArea(
+      child: Center(
+          child: Padding(
+        padding: EdgeInsets.only(
+          left: 20.w,
+          top: 20.h,
+          right: 20.w,
+        ),
+        child: SingleChildScrollView(
+          child: Form(
+            key: loginFormKey,
             child: Column(
               children: [
                 Image.asset(
@@ -43,12 +60,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 SpacerUtil.hspace(33.h),
                 AppFormField(
+                  validator: (data) => ValidationHelper.isValidInput(data!),
                   controller: username,
                   image: "Profile.png",
                   title: "Username",
                 ),
                 SpacerUtil.hspace(16.h),
                 AppFormField(
+                  validator: (data) => ValidationHelper.isValidInput(data!),
                   controller: password,
                   image: "Lock.png",
                   title: "Password",
@@ -70,7 +89,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                     )),
                 AppButton(
-                    title: "Log In", function: () async {}, isLarge: false),
+                    title: "Log In",
+                    function: () async {
+                      if (loginFormKey.currentState!.validate()) {
+                        final success = await ref
+                            .read(onboardingViewModel)
+                            .elogin(
+                                username: username.text,
+                                password: password.text);
+                        if (success) {
+                          Get.to(() => const DashBoardScreen());
+                        }
+                      } else {
+                        return;
+                      }
+                    },
+                    isLoading: onboardingVm.loginData.loading,
+                    isLarge: false),
                 SpacerUtil.hspace(54.h),
                 SizedBox(
                   width: 200.w,
@@ -138,8 +173,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ],
             ),
           ),
-        )),
-      ),
+        ),
+      )),
     );
   }
 }

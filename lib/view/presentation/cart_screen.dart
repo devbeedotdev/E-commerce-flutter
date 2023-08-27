@@ -53,7 +53,11 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                 ],
               ),
               SpacerUtil.hspace(20.h),
-              AppButton(title: "CheckOut", function: () {}, isLarge: true)
+              AppButton(
+                  isLoading: true,
+                  title: "CheckOut",
+                  function: () {},
+                  isLarge: true)
             ],
           )),
         ));

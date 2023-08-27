@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconly/iconly.dart';
+import 'package:shopping_app/data/provider/category/category_provider.dart';
+import 'package:shopping_app/data/provider/global_provider.dart';
 import 'package:shopping_app/view/presentation/cart_screen.dart';
 import 'package:shopping_app/view/presentation/home_screen.dart';
 import 'package:shopping_app/view/presentation/product_details_screen.dart';
@@ -14,13 +16,21 @@ class DashBoardScreen extends ConsumerStatefulWidget {
 }
 
 class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
-  final indexProvider = StateProvider<int>((ref) => 0);
   final List<Widget> pages = [
     const HomeScreen(),
     const CartScreen(),
     const ProductDetailsScreen(),
     const ProfileScreen()
   ];
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(categoryViewModel).getCategories();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final index = ref.watch(indexProvider);
