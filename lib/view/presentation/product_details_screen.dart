@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
 import 'package:shopping_app/data/provider/category/category_provider.dart';
+import 'package:shopping_app/data/provider/global_provider.dart';
 import 'package:shopping_app/view/widgets/appbutton.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -23,7 +24,7 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen> {
     final categoryVm = ref.watch(categoryViewModel);
     final inCategoryVm = ref.watch(categoryViewModel).inCategoryData.data;
     return categoryVm.inCategoryData.autoloading
-        ? const Center(child: CircularProgressIndicator())
+        ? load
         : Scaffold(
             appBar: AppBar(
                 leading: IconButton(

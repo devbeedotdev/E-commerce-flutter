@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shopping_app/data/helpers/storage_helper.dart';
+import 'package:shopping_app/view/presentation/dashboard_screen.dart';
 import 'package:shopping_app/view/presentation/login_screen.dart';
 
 Future<void> main() async {
@@ -36,7 +38,9 @@ class MyApp extends ConsumerWidget {
               body: AnimatedSplashScreen(
                 duration: 250,
                 splash: 'assets/images/splash.png',
-                nextScreen: const LoginScreen(),
+                nextScreen: StorageHelper.getString("token") != null
+                    ? DashBoardScreen()
+                    : LoginScreen(),
                 splashTransition: SplashTransition.rotationTransition,
               ),
             ),

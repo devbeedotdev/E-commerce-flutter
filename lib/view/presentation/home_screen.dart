@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
 import 'package:shopping_app/data/provider/category/category_provider.dart';
+import 'package:shopping_app/data/provider/global_provider.dart';
 import 'package:shopping_app/view/presentation/product_details_screen.dart';
 import 'package:shopping_app/view/widgets/appformfield.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
@@ -20,13 +21,18 @@ class HomeScreen extends ConsumerStatefulWidget {
 // final userDetail = ref.watch(getUserProvider).userDetail.data;
 // print(userDetail);
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  List<String> images = [
+    "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
+    "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+    "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+    "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg"
+  ];
   @override
   Widget build(BuildContext context) {
     final categoryVm = ref.watch(categoryViewModel);
-    return categoryVm.categoryData.autoloading
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
+    return categoryVm.categoryData.autoloading ||
+            categoryVm.fewProductData.autoloading
+        ? load
         : Scaffold(
             appBar: AppBar(
                 centerTitle: true,
@@ -97,7 +103,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                     Get.to(() => const ProductDetailsScreen());
                                   },
                                   title: categoryVm.categoryData.data![index],
-                                  image: "")),
+                                  image: images[index])),
                         ),
                       ),
                       SpacerUtil.hspace(40.h),
@@ -118,8 +124,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
-                          children:
-                              List.generate(5, (index) => const LargeDisplay()),
+                          children: List.generate(
+                              categoryVm.fewProductData.data!.length,
+                              (index) =>
+                                  LargeDisplay(index: index, function: () {})),
                         ),
                       ),
                     ]),

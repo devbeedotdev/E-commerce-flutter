@@ -9,6 +9,18 @@ part of 'in_category_response_model.dart';
 InCategoryResponseModel _$InCategoryResponseModelFromJson(
         Map<String, dynamic> json) =>
     InCategoryResponseModel(
+      data: json['data'],
+    );
+
+Map<String, dynamic> _$InCategoryResponseModelToJson(
+        InCategoryResponseModel instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
+
+InCategoryResponseData _$InCategoryResponseDataFromJson(
+        Map<String, dynamic> json) =>
+    InCategoryResponseData(
       id: json['id'] as int?,
       title: json['title'] as String?,
       price: json['price'] as String?,
@@ -18,8 +30,8 @@ InCategoryResponseModel _$InCategoryResponseModelFromJson(
       rating: json['rating'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$InCategoryResponseModelToJson(
-        InCategoryResponseModel instance) =>
+Map<String, dynamic> _$InCategoryResponseDataToJson(
+        InCategoryResponseData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

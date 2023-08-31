@@ -3,6 +3,15 @@ import 'package:shopping_app/data/api/api_manager.dart';
 class CategoryService extends ApiManager {
   final String categoryUrl = "/products/categories";
   final String inCategoryUrl = "/products/category/";
+  final String fewProductsUrl = "/products?limit=5";
+  final String cartUrl = "/carts/2";
+  final String productUrl = "/products/";
+  final String productsUrl = "/products";
+
+  Future<List<dynamic>> getProducts() async {
+    final response = await getHttp(productsUrl);
+    return response.data;
+  }
 
   Future<List<dynamic>> getCategories() async {
     final response = await getHttp(categoryUrl);
@@ -11,6 +20,21 @@ class CategoryService extends ApiManager {
 
   Future<List> getInCategories({required String category}) async {
     final response = await getHttp('$inCategoryUrl$category');
+    return response.data;
+  }
+
+  Future<List> getFewProducts() async {
+    final response = await getHttp(fewProductsUrl);
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> getProduct({required int id}) async {
+    final response = await getHttp("$productUrl$id");
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> getCart() async {
+    final response = await getHttp(cartUrl);
     return response.data;
   }
 }

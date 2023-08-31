@@ -4,6 +4,17 @@ part 'in_category_response_model.g.dart';
 
 @JsonSerializable()
 class InCategoryResponseModel {
+  InCategoryResponseModel({required data});
+  List<InCategoryResponseData>? data;
+
+  factory InCategoryResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$InCategoryResponseModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$InCategoryResponseModelToJson(this);
+}
+
+@JsonSerializable()
+class InCategoryResponseData {
   int? id;
   String? title;
   String? price;
@@ -12,7 +23,7 @@ class InCategoryResponseModel {
   String? image;
   Map<String, dynamic>? rating;
 
-  InCategoryResponseModel(
+  InCategoryResponseData(
       {this.id,
       this.title,
       this.price,
@@ -21,8 +32,8 @@ class InCategoryResponseModel {
       this.image,
       this.rating});
 
-  factory InCategoryResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$InCategoryResponseModelFromJson(json);
+  factory InCategoryResponseData.fromJson(Map<String, dynamic> json) =>
+      _$InCategoryResponseDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$InCategoryResponseModelToJson(this);
+  Map<String, dynamic> toJson() => _$InCategoryResponseDataToJson(this);
 }

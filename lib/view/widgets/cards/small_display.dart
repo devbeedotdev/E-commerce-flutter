@@ -21,15 +21,14 @@ class SmallDisplay extends ConsumerWidget {
         onTap: function,
         child: Container(
           decoration: BoxDecoration(
-              color: const Color(0x0D000000),
-              borderRadius: BorderRadius.circular(8.r)),
+              color: Colors.white, borderRadius: BorderRadius.circular(8.r)),
           width: 71.h,
           height: 75.h,
           child: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/images/dress.png"),
+              Image.network(image, width: 27.w, height: 37.h),
               SpacerUtil.hspace(7.h),
               title.isEmpty
                   ? Container()
