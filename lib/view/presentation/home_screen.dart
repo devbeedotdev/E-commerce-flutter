@@ -31,7 +31,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final categoryVm = ref.watch(categoryViewModel);
     return categoryVm.categoryData.autoloading ||
-            categoryVm.fewProductData.autoloading
+            categoryVm.fewProductData.autoloading ||
+            categoryVm.getUserData.autoloading ||
+            categoryVm.getHotDealData.autoloading
         ? load
         : Scaffold(
             appBar: AppBar(
@@ -44,7 +46,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ],
                 ),
                 title: Text(
-                  "fysuy",
+                  "${categoryVm.getUserData.data!["address"]["city"]} ${categoryVm.getUserData.data!["address"]["street"]}",
                   style: Styles.smallText(color: Colors.black),
                 ),
                 actions: [
@@ -128,6 +130,40 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               categoryVm.fewProductData.data!.length,
                               (index) =>
                                   LargeDisplay(index: index, function: () {})),
+                        ),
+                      ),
+                      SpacerUtil.hspace(17.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Hot Deal!",
+                            style: Styles.mediumText(),
+                          ),
+                          Text(
+                            "See All",
+                            style: Styles.smallText(),
+                          )
+                        ],
+                      ),
+                      SpacerUtil.hspace(17.h),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: List.generate(
+                              categoryVm.getHotDealData.data!.length,
+                              (index) => SmallDisplay(
+                                  function: () {
+                                    // ref.read(categoryViewModel).getInCategories(
+                                    //     category: categoryVm
+                                    //         .getHotDealData.data![index]);
+                                    Get.to(() => const ProductDetailsScreen());
+                                  },
+                                  title: categoryVm.getHotDealData.data![index]
+                                      ["title"],
+                                  image: categoryVm.getHotDealData.data![index]
+                                      ["image"])),
                         ),
                       ),
                     ]),

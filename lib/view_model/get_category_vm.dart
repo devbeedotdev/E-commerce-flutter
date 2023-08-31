@@ -10,7 +10,39 @@ class CategoryViewModel extends BaseViewModel {
   FutureManager<List> fewProductData = FutureManager();
   FutureManager<Map<String, dynamic>> getCartData = FutureManager();
   FutureManager<Map<String, dynamic>> getProductData = FutureManager();
+  FutureManager<Map<String, dynamic>> getUserData = FutureManager();
   FutureManager<List> getProductsData = FutureManager();
+  FutureManager<List> getHotDealData = FutureManager();
+
+  Future<bool> getHotDeal() async {
+    getHotDealData.load();
+    notifyListeners();
+    final response = await ref.read(categoryServiceProvider).getHotDeal();
+    if (response.isNotEmpty) {
+      getHotDealData.onSuccess(response);
+      notifyListeners();
+      return true;
+    } else {
+      getHotDealData.onError("Data not found");
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future<bool> getUser() async {
+    getUserData.load();
+    notifyListeners();
+    final response = await ref.read(categoryServiceProvider).getUser();
+    if (response.isNotEmpty) {
+      getUserData.onSuccess(response);
+      notifyListeners();
+      return true;
+    } else {
+      getUserData.onError("Data not found");
+      notifyListeners();
+      return false;
+    }
+  }
 
   Future<bool> getProducts() async {
     getProductsData.load();

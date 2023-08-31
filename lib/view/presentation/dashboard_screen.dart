@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconly/iconly.dart';
+import 'package:shopping_app/data/helpers/storage_helper.dart';
 import 'package:shopping_app/data/provider/category/category_provider.dart';
 import 'package:shopping_app/data/provider/global_provider.dart';
 import 'package:shopping_app/view/presentation/cart_screen.dart';
@@ -27,10 +28,13 @@ class _DashBoardScreenState extends ConsumerState<DashBoardScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      StorageHelper.setString("Answer", "0");
       ref.read(categoryViewModel)
         ..getCategories()
         ..getFewProducts()
         ..getProducts()
+        ..getUser()
+        ..getHotDeal()
         ..getCart();
     });
     super.initState();

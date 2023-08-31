@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
+import 'package:shopping_app/data/provider/category/category_provider.dart';
 import 'package:shopping_app/data/utils/spacer.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -14,6 +15,7 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final categoryVm = ref.watch(categoryViewModel);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -46,7 +48,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             SpacerUtil.hspace(13.h),
             Text(
-              "fkdjhfk",
+              "${categoryVm.getUserData.data!["name"]["firstname"]} ${categoryVm.getUserData.data!["name"]["lastname"]}",
               style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.w500,
@@ -54,7 +56,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             SpacerUtil.hspace(4.h),
             Text(
-              "xvjkjdsksjv",
+              "${categoryVm.getUserData.data!["email"]}",
               style: Styles.smallText(),
             ),
             SpacerUtil.hspace(25.h),
@@ -98,6 +100,7 @@ class UserDetailCard extends ConsumerStatefulWidget {
 class _UserDetailCardState extends ConsumerState<UserDetailCard> {
   @override
   Widget build(BuildContext context) {
+    final categoryVm = ref.watch(categoryViewModel);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -120,8 +123,8 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
                   "Name:",
                   style: Styles.smallText(),
                 ),
-                const Text(
-                  "sff",
+                Text(
+                  "${categoryVm.getUserData.data!["name"]["firstname"]} ${categoryVm.getUserData.data!["name"]["lastname"]}",
                 ),
               ],
             ),
@@ -132,8 +135,8 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
                   "Email:",
                   style: Styles.smallText(),
                 ),
-                const Text(
-                  "vdvjd",
+                Text(
+                  "${categoryVm.getUserData.data!["email"]}",
                 ),
               ],
             ),
@@ -141,8 +144,8 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Location", style: Styles.smallText()),
-                const Text(
-                  "fdjfkjf",
+                Text(
+                  "${categoryVm.getUserData.data!["address"]["number"]} ${categoryVm.getUserData.data!["address"]["city"]} ${categoryVm.getUserData.data!["address"]["street"]}",
                 ),
               ],
             ),
@@ -153,7 +156,7 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
                   "Zip Code",
                   style: Styles.smallText(),
                 ),
-                const Text("fjkfjc")
+                Text("${categoryVm.getUserData.data!["address"]["zipcode"]}")
               ],
             ),
             Row(
@@ -163,7 +166,7 @@ class _UserDetailCardState extends ConsumerState<UserDetailCard> {
                   "Phone",
                   style: Styles.smallText(),
                 ),
-                const Text("ffvjkjv")
+                Text("+${categoryVm.getUserData.data!["phone"]}")
               ],
             ),
           ],

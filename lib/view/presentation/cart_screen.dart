@@ -17,8 +17,10 @@ class CartScreen extends ConsumerStatefulWidget {
 }
 
 class _CartScreenState extends ConsumerState<CartScreen> {
-  List<double> allPrice = [];
-  List<int> allQuantity = [];
+  StateProvider<bool> isCalculated = StateProvider<bool>(
+    (ref) => false,
+  );
+  List<num> allPrice = [];
   StateProvider<double> totalPriceProvider =
       StateProvider<double>((ref) => 0.0);
   @override
@@ -68,25 +70,28 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                   SpacerUtil.hspace(150.h),
                   Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Subtotal :",
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.w500)),
-                          Text(
-                            "\$${StorageHelper.getString("Answer") ?? 0}",
-                            style: Styles.mediumText(),
-                          ),
-                        ],
-                      ),
+                      ref.watch(isCalculated)
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Subtotal :",
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w500)),
+                                Text(
+                                  "\$${ref.watch(totalPriceProvider) == 0 ? StorageHelper.getString("Answer") : ref.watch(totalPriceProvider)}",
+                                  style: Styles.mediumText(),
+                                ),
+                              ],
+                            )
+                          : Container(),
                       SpacerUtil.hspace(5.h),
                       AppButton(
                           isLoading: false,
-                          title: "CheckOut",
+                          title: "Calculate Price",
                           function: () {
+                            ref.read(isCalculated.notifier).state = true;
                             double sumPrice = 0.0;
                             StorageHelper.delete("Answer");
                             // int sumQuantity;
@@ -97,10 +102,12 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                       cartVm.data!["products"][i]
                                           ["productId"]]["price"] *
                                   cartVm.data!["products"][i]["quantity"]);
-                              print(cartIndex);
-                              print(allPrice);
+                              // print(productsVm.data![cartVm.data!["products"][i]
+                              //     ["productId"]]["price"]);
+                              // print(cartVm.data!["products"][i]["quantity"]);
+                              // print(allPrice);
                             }
-                            for (double number in allPrice) {
+                            for (num number in allPrice) {
                               sumPrice += number;
                             }
                             StorageHelper.setString("Answer", "$sumPrice");

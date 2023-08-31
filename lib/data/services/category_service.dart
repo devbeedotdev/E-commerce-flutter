@@ -7,6 +7,18 @@ class CategoryService extends ApiManager {
   final String cartUrl = "/carts/2";
   final String productUrl = "/products/";
   final String productsUrl = "/products";
+  final String userUrl = "/users/3";
+  final String hotDealUrl = "/products?sort=desc";
+
+  Future<List> getHotDeal() async {
+    final response = await getHttp(hotDealUrl);
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> getUser() async {
+    final response = await getHttp(userUrl);
+    return response.data;
+  }
 
   Future<List<dynamic>> getProducts() async {
     final response = await getHttp(productsUrl);

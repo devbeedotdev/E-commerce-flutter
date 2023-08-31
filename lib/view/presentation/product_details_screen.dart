@@ -19,6 +19,7 @@ class ProductDetailsScreen extends ConsumerStatefulWidget {
 
 class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen> {
   final pageIndex = StateProvider<int>((ref) => 0);
+  final isFav = StateProvider<bool>((ref) => false);
   @override
   Widget build(BuildContext context) {
     final categoryVm = ref.watch(categoryViewModel);
@@ -36,8 +37,12 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen> {
                 ),
                 actions: [
                   IconButton(
-                    onPressed: () {},
-                    icon: const Icon(color: Colors.black, IconlyLight.heart),
+                    onPressed: () {
+                      ref.read(isFav.notifier).state = !ref.watch(isFav);
+                    },
+                    icon: Icon(
+                        color: ref.watch(isFav) ? Colors.red : Colors.black,
+                        IconlyLight.heart),
                   ),
                 ]),
             body: Column(
@@ -50,6 +55,8 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen> {
                         Expanded(
                           child: PageView.builder(
                               onPageChanged: (index) {
+                                ref.read(isFav.notifier).state =
+                                    !ref.watch(isFav);
                                 ref.read(pageIndex.notifier).state = index;
                               },
                               itemCount: categoryVm.inCategoryData.data!.length,
@@ -115,7 +122,7 @@ void openSheet(context, data, index) {
                         ),
                       ),
                       Text(
-                        data[index]["price"].toString(),
+                        "\$${data[index]["price"].toString()}",
                         style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500),
                       )
