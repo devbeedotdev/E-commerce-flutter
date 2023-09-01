@@ -15,9 +15,9 @@ This project is an online shopping application allowing users to shop based on p
 >>>>>>> ee5f932df4f91047bee1a3f7450db2392cdd66a7
 
 ## Packages used:
-- Flutter Audio query
-- Salmon bottom Bar
-- flutter Audio manager
+- flutter_riverpod
+- dio
+- hive
 
 ## screenshots
 
