@@ -1,16 +1,39 @@
-# shopping_app
+# E_commerce
 
-A new Flutter project.
+<<<<<<< HEAD
+An online shopping app built with Dart and Flutter
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This app allows users to view category/products add produt to cart with the consumption of an APi.
+=======
+An online shopping built with a fake Api.
 
-A few resources to get you started if this is your first Flutter project:
+## Getting Started
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This project is an online shopping application allowing users to shop based on product category, with authentication based on the fake Api used.
+>>>>>>> ee5f932df4f91047bee1a3f7450db2392cdd66a7
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Packages used:
+- Flutter Audio query
+- Salmon bottom Bar
+- flutter Audio manager
+
+## screenshots
+## Login
+![](assets/images/login_screen.png)
+
+## Signup
+![](assets/images/signup_screen.png)
+
+## Home
+![](assets/images/home_picture_jpeg)
+
+## View
+![](assets/images/view.png)
+
+## Cart
+![](assets/images/cart_picture.jpeg)
+
+## Profile
+![](assets/images/profile_screen.png)

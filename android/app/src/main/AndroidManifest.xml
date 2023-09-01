@@ -2,7 +2,7 @@
     package="com.example.shopping_app">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="shopping_app"
+        android:label="Flumia"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

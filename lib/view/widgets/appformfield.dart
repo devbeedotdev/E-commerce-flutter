@@ -6,9 +6,11 @@ import 'package:shopping_app/data/helpers/style_helper.dart';
 class AppFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController controller;
+  final bool isObscure;
   final String image;
   final String title;
   const AppFormField({
+    required this.isObscure,
     required this.validator,
     required this.controller,
     super.key,
@@ -19,6 +21,7 @@ class AppFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: isObscure,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       controller: controller,

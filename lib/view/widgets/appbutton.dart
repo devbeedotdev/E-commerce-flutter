@@ -22,6 +22,12 @@ class AppButton extends ConsumerWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(90.r))),
         onPressed: function,
-        child: isLoading ? const CircularProgressIndicator() : Text(title));
+        child: isLoading ? SizedBox(
+          width: 25,
+          height: 25,
+          child: const CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        ) : Text(title));
   }
 }

@@ -7,7 +7,6 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:shopping_app/data/helpers/validation_helper.dart';
 import 'package:shopping_app/data/controllers/form_controllers.dart';
 import 'package:shopping_app/data/helpers/style_helper.dart';
-import 'package:shopping_app/data/provider/global_provider.dart';
 import 'package:shopping_app/data/provider/onboarding/onboarding_provider.dart';
 import 'package:shopping_app/view/presentation/dashboard_screen.dart';
 import 'package:shopping_app/view/widgets/appbutton.dart';
@@ -39,9 +38,7 @@ class _LoginScreenWidgetState extends ConsumerState<LoginScreenWidget> {
   @override
   Widget build(BuildContext context) {
     final onboardingVm = ref.watch(onboardingViewModel);
-    return onboardingVm.loginData.loading
-        ? load
-        : SafeArea(
+    return  SafeArea(
             child: Center(
                 child: Padding(
               padding: EdgeInsets.only(
@@ -63,6 +60,7 @@ class _LoginScreenWidgetState extends ConsumerState<LoginScreenWidget> {
                       ),
                       SpacerUtil.hspace(33.h),
                       AppFormField(
+                        isObscure: false,
                         validator: (data) =>
                             ValidationHelper.isValidInput(data!),
                         controller: username,
@@ -71,6 +69,7 @@ class _LoginScreenWidgetState extends ConsumerState<LoginScreenWidget> {
                       ),
                       SpacerUtil.hspace(16.h),
                       AppFormField(
+                        isObscure: false,
                         validator: (data) =>
                             ValidationHelper.isValidInput(data!),
                         controller: password,
@@ -97,6 +96,7 @@ class _LoginScreenWidgetState extends ConsumerState<LoginScreenWidget> {
                           title: "Log In",
                           function: () async {
                             if (loginFormKey.currentState!.validate()) {
+                              FocusScope.of(context).unfocus();
                               final success = await ref
                                   .read(onboardingViewModel)
                                   .elogin(
@@ -109,7 +109,7 @@ class _LoginScreenWidgetState extends ConsumerState<LoginScreenWidget> {
                               return;
                             }
                           },
-                          isLoading: false,
+                          isLoading: onboardingVm.loginData.loading,
                           isLarge: false),
                       SpacerUtil.hspace(54.h),
                       SizedBox(

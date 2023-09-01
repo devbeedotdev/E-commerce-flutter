@@ -44,6 +44,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   ),
                   SpacerUtil.hspace(33.h),
                   AppFormField(
+                    isObscure: false,
                     validator: (data) => ValidationHelper.isValidInput(data!),
                     controller: sUsername,
                     image: "Profile.png",
@@ -51,6 +52,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   ),
                   SpacerUtil.hspace(16.h),
                   AppFormField(
+
+                    isObscure: false,
                     validator: (data) => ValidationHelper.isValidEmail(data!),
                     controller: sEmail,
                     image: "Message.png",
@@ -58,6 +61,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   ),
                   SpacerUtil.hspace(16.h),
                   AppFormField(
+
+                    isObscure: false,
                     validator: (data) => ValidationHelper.isValidInput(data!),
                     controller: sPassword,
                     image: "Lock.png",
