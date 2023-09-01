@@ -21,10 +21,7 @@ This project is an online shopping application allowing users to shop based on p
 
 ## screenshots
 
-  HomePage                 |   Product Detail Page        |  Cart Page
-:-------------------------:|:-------------------------:|:-------------------------:
 
-![](https://github.com/beevers/E-commerce-flutter/blob/master/screenshots/screenshot_1.jpg?raw=true)|![](https://github.com/TheAlphamerc/flutter_ecommerce_app/blob/master/screenshots/screenshot_2.jpg?raw=true)|![](https://github.com/TheAlphamerc/flutter_ecommerce_app/blob/master/screenshots/screenshot_3.jpg?raw=true)
 ## Login
 ![](assets/images/login_screen.png)
 
