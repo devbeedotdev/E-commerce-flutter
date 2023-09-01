@@ -3,15 +3,11 @@
 <<<<<<< HEAD
 An online shopping app built with Dart and Flutter
 
-## Getting Started
 
-This app allows users to view category/products add produt to cart with the consumption of an APi.
 =======
-An online shopping built with a fake Api.
 
-## Getting Started
-
-This project is an online shopping application allowing users to shop based on product category, with authentication based on the fake Api used.
+## Project About
+This project is an e-commerce application that offers users the convenience of online shopping by allowing them to browse and purchase products based on various product categories. The application incorporates user authentication, utilizing a simulated API for user verification and security purposes.
 >>>>>>> ee5f932df4f91047bee1a3f7450db2392cdd66a7
 
 ## Packages used:
